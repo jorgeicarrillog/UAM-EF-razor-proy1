@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="container-fluid content-row">
+        <div class="row mb-3">
+        @foreach (var movie in Movies)
+        {
+            <div class="col col-md-4">
+                <div class="card">
+                    <img src="@movie.Poster" class="img-thumbnail" alt="@movie.Name" width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Name</h5>
+                        <p class="card-text">@movie.Sinopsis</p>
+                        <p class="text-muted">Calificación: @movie.Score</p>
+                    </div>
+                    <div class="card-footer text-right">
+                        <a class="btn btn-info" href="/movies/edit/@movie.Id">Editar</a>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+</div>
+
+@code{
+    [Parameter] public List <Movie> Movies{get;set;}
+}

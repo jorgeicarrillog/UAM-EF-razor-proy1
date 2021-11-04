@@ -1,0 +1,14 @@
+﻿@page "/"
+@using Proy1.Client.Pages.Components;
+@inject IServiceMovie movie
+
+<div class="jumbotron">
+    <MovieComponent Movies="Movies"></MovieComponent>
+</div>
+
+@code{
+    private List <Movie> Movies;
+        protected override void OnInitialized(){
+            Movies = movie.GetMovies();
+        }
+}

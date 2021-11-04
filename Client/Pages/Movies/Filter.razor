@@ -1,0 +1,51 @@
+@page "/movies/filter";
+@using Proy1.Client.Pages.Components;
+@inject IServiceMovie movie;
+
+<div class="jumbotron">
+    <div class="">
+        <div class="row">
+            <div class="col col-sm-6">
+                <input type="text" name="movie_name" id="movie_name" @bind-Value:event="oninput"
+                    @bind-Value="movie_name" @onkeypress="@((KeyboardEventArgs e) => SearchMovie(e))"
+                    placeholder="Nombre pelicula" class="form-control">
+            </div>
+            <div class="col col-sm-4 d-inline-flex">
+                <button class="btn btn-info" type="button" @onclick="ListMovie">Buscar</button>
+                <button class="btn btn-danger ml-2" type="button" @onclick="ClearSearch">Cancelar</button>
+            </div>
+            <div class="col col-sm-2 d-inline-flex">
+                <a class="btn btn-info" href="/movies/create">Crear</a>
+            </div>
+        </div>
+    </div>
+</div>
+<MovieComponent Movies=Movies></MovieComponent>
+@code {
+    private List<Movie> Movies;
+    public string movie_name = "";
+    protected override void OnInitialized()
+    {
+        Movies = movie.GetMovies();
+    }
+
+    private void SearchMovie(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            ListMovie();
+        }
+    }
+
+    private void ListMovie()
+    {
+        Console.WriteLine($"Buscando: {movie_name}");
+        Movies = movie.GetMovies().Where(x => x.Name.ToLower().Contains(movie_name.ToLower())).ToList();
+    }
+
+    private void ClearSearch()
+    {
+        movie_name = "";
+        Movies = movie.GetMovies();
+    }
+}

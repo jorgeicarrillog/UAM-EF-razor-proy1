@@ -1,0 +1,28 @@
+@page "/movies/edit/{Id:int}"
+@using Proy1.Client.Pages.Forms
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Editar Pelicula: @Movie.Name</h2>
+        <FormMovie OnValidSubmit="Edit" Movie="Movie"></FormMovie>
+    </div>
+</div>
+
+@code{
+    [Parameter] public int Id { get; set; }
+    private Movie Movie = new Movie();
+    protected override void OnInitialized()
+    {
+        Movie = new Movie()
+        {
+            Id = Id,
+            Name = "Calamar",
+            Sinopsis = "Muerte al 100",
+            Score = 9,
+            Premier = new DateTime()
+        };
+    }
+    void Edit(){
+        Console.WriteLine(Movie.Name);
+    }
+}

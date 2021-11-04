@@ -1,0 +1,15 @@
+@page "/actores"
+@using Proy1.Client.Pages.Components;
+@inject IServiceActor actor
+
+<div class="jumbotron">
+    <ActorComponent Actors="Actors"></ActorComponent>
+</div>
+
+@code {
+    private List<Actor> Actors;
+    protected override void OnInitialized()
+    {
+        Actors = actor.GetActors();
+    }
+}

@@ -1,0 +1,15 @@
+@page "/categories/create"
+@using Proy1.Client.Pages.Forms
+
+<div class="container">
+    <div class="jumbotron">
+        <FormCategory OnValidSubmit="Create" Category="Category"></FormCategory>
+    </div>
+</div>
+
+@code{
+    public Category Category = new Category();
+    void Create(){
+        Console.WriteLine(Category.Name);
+    }
+}

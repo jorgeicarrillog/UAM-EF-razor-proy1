@@ -1,0 +1,30 @@
+<EditForm Model="Movie" OnValidSubmit=OnValidSubmit>
+    <DataAnnotationValidator></DataAnnotationValidator>
+    <div class="row">
+        <div class="col mb-3">
+            <InputText class="form-control" @bind-Value="@Movie.Name"></InputText>
+            <ValidationMessage For="@(()=>Movie.Name)"></ValidationMessage>
+        </div>
+        <div class="col mb-3">
+            <InputDate class="form-control" @bind-Value="@Movie.Premier"></InputDate>
+            <ValidationMessage For="@(()=>Movie.Premier)"></ValidationMessage>
+        </div>
+        <div class="col mb-3">
+            <InputNumber class="form-control" @bind-Value="@Movie.Score"></InputNumber>
+            <ValidationMessage For="@(()=>Movie.Score)"></ValidationMessage>
+        </div>
+        <div class="col-12 mb-3">
+            <InputTextArea class="form-control" @bind-Value="@Movie.Sinopsis"></InputTextArea>
+            <ValidationMessage For="@(()=>Movie.Sinopsis)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="my-2 text-right">
+        <button type="submit" class="btn btn-info">Guardar</button>
+        <a class="btn btn-danger ml-2" href="/movies/filter">Cancelar</a>
+    </div>
+</EditForm>
+@code {
+    protected override void OnInitialized() { }
+    [Parameter] public Movie Movie { get; set; }
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+}

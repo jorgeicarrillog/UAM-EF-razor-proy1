@@ -1,0 +1,26 @@
+@page "/categories/edit/{Id:int}"
+@using Proy1.Client.Pages.Forms
+
+<div class="container">
+    <div class="jumbotron">
+        <FormCategory OnValidSubmit="Edit" Category="Category"></FormCategory>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Category Category = new Category();
+
+    protected override void OnInitialized()
+    {
+        Category = new Category()
+        {
+            Id = Id,
+            Name = "Comedia"
+        };
+    }
+    void Edit()
+    {
+        Console.WriteLine($"Actualizando nombre: {Category.Name}");
+    }
+}
